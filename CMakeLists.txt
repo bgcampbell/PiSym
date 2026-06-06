@@ -10,11 +10,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # (note this can come from environment, CMake cache etc)
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include" 
+                    "${CMAKE_CURRENT_SOURCE_DIR}/littlefs" 
                     "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/include" 
                     "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/include"
                     "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/ff15/source"
                     "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/sd_driver"
-                    # "${PICO_SDK_PATH}/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include"
                     "${PICO_SDK_PATH}/src/rp2_common/cmsis/stub/CMSIS/Core/Include"
                    ) 
 
@@ -51,10 +51,13 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 
 add_executable(PiSym 
-               PiSym.cpp ReadWrite.cpp IO.cpp Instructions.cpp Config.cpp DebugInfo.cpp FlashBase.cpp lfs.c pico_hal.c
+               PiSym.cpp ReadWrite.cpp IO.cpp Instructions.cpp Config.cpp DebugInfo.cpp FlashBase.cpp
                symon1_1.c BASIC1_1.c BasicTrig.c RAE_B000.c RAE_E000.c
                TraceData.cpp Disassembler.cpp CommandLine.cpp CommandLine_FileAndTape.cpp SymbolTable.cpp File.cpp Tape.cpp TapeFileBase.cpp Path.cpp
-               InstructionTest.cpp hw_config.c
+               InstructionTest.cpp
+               "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/pico_hal.c"
+               "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/lfs.c"
+               "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/hw_config.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/src/crc.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/src/f_util.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/ff15/source/ff.c"
