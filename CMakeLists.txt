@@ -54,7 +54,6 @@ add_executable(PiSym
                PiSym.cpp ReadWrite.cpp IO.cpp Instructions.cpp Config.cpp DebugInfo.cpp FlashBase.cpp
                symon1_1.c BASIC1_1.c BasicTrig.c RAE_B000.c RAE_E000.c
                TraceData.cpp Disassembler.cpp CommandLine.cpp CommandLine_FileAndTape.cpp SymbolTable.cpp File.cpp Tape.cpp TapeFileBase.cpp Path.cpp
-               InstructionTest.cpp
                "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/pico_hal.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/lfs.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/littlefs/hw_config.c"
@@ -70,10 +69,6 @@ add_executable(PiSym
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/sd_driver/sd_timeouts.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/sd_driver/dma_interrupts.c"
                "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/ff15/source/ffunicode.c"
-            #    "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/src/crash.c"
-
-            #    "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/sd_driver/SDIO/sd_card_sdio.c"
-            #    "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico/src/sd_driver/SDIO/rp2040_sdio.c"
               )
 
 pico_set_program_name(PiSym "PiSym")
@@ -90,7 +85,6 @@ target_link_libraries(PiSym
                       hardware_pio
                       hardware_spi
                       hardware_dma
-                    #   "${CMAKE_CURRENT_SOURCE_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico"
                      )
 
 # Add the standard include files to the build

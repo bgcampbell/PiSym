@@ -178,48 +178,6 @@ void __not_in_flash_func(indicate)(bool fValue)
   }
 #endif
 
-#ifdef _TEST_
-int nrErrors = 0;
-
-void setup()
-{
-  gpio_init(TimingIndicatorPin);
-  gpio_init(SYNCPin);
-  gpio_set_dir(TimingIndicatorPin, GPIO_OUT);
-  gpio_set_dir(SYNCPin, GPIO_OUT);
-
-  createMemoryAnalysis();
-
-  sleep_ms(10000);
-
-  nrErrors = RunTests();
-  char nrErrorsText[11] = "";
-  sprintf(nrErrorsText, "%d", nrErrors);
-  printf("Tests Complete with %s errors\r\n", nrErrors == 0 ? "no" : nrErrorsText);
-}
-void Loop()
-{
-  indicate(false);
-  if(nrErrors == 0)
-  {
-    indicate(true);
-    sleep_ms(100);
-    indicate(false);
-    sleep_ms(100);
-  }
-  else
-  {
-    for(int i = 0; i < nrErrors; i++)
-    {
-      indicate(true);
-      sleep_ms(250);
-      indicate(false);
-      sleep_ms(250);
-    }
-    sleep_ms(2000);
-  }
-}
-#else
 void setup() 
 {
     for(int i = 0; i < gpioInitCount; i++)
@@ -318,7 +276,6 @@ void __not_in_flash_func(Loop)(void)
   }
 #endif
 }
-#endif
 
 char typeText[25][8] = { 
                         "Mem",

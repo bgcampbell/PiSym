@@ -16,7 +16,6 @@
 class TConfig;
 class TTape;
 
-// #define _TEST_
 // #define _SPEEDTEST_ 7
 // #define FULLSPEED
 

@@ -163,8 +163,6 @@ int selectCRT(uint16_t *fAddr)
 		PC += 3;
 		*fAddr = MapAddress(PC - 1);
 	}
-	// if(DebuggerOn)
-	// 		DoWatch(*fAddr, eAccess::Read, Memory[*fAddr]);
 
 	return Memory[*fAddr];
 }
@@ -177,7 +175,7 @@ int baudCRT(uint16_t *fAddr)
 	*fAddr = MapAddress(PC);
 	PC++;   // When it returns, PC must point to the instruction operand as it would in the early part of SingleStep
 	USBRedirect = true;
-	printf("\r\nRedirecting input from USB\r\n");
+	printf("\r\nRedirecting I/O via USB\r\n");
 	// if(DebuggerOn)
 	// 	DoWatch(*fAddr, eAccess::Read, Memory[*fAddr]);
 	return Memory[*fAddr];
